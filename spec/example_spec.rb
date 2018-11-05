@@ -25,104 +25,97 @@
 require "./lib/skyscraper"
 
 describe 'skyscrapers' do
+  subject do
+    args = {}
+    args[:bottom] = bottom_clues if defined?(bottom_clues)
+    args[:top] = top_clues if defined?(top_clues)
+    args[:left] = left_clues if defined?(left_clues)
+    args[:right] = right_clues if defined?(right_clues)
+
+    Skyscraper.solve(args)
+  end
+
+  context "a 3x3 grid" do
+    context "with a top clue of 3,1,nil" do
+      let(:top_clues) { [3, 1, nil] }
+      it { is_expected.to eq({ first_row: [1, 3, 2], second_row: [2, 1, 3], third_row: [3, 2, 1]}) }
+    end
+
+    context "with a top clue of 3,1,nil" do
+      let(:top_clues) { [3, 2, nil] }
+      it { is_expected.to eq({ first_row: [1, 2, 3], second_row: [2, 3, 1], third_row: [3, 1, 2]}) }
+    end
+  end
+
   context 'a 2x2 grid' do
     context 'with a top clue of 2, 1' do
       let(:top_clues) { [2, 1] }
-      let(:solution) {{ first_row: [1, 2], second_row: [2, 1] }}
-
-      it 'solves it' do
-        expect(Skyscraper.solve(top: top_clues)).to eq solution
-      end
+      it { is_expected.to eq({ first_row: [1, 2], second_row: [2, 1] }) }
     end
 
     context 'with a top clue of 1, 2' do
       let(:top_clues) { [1, 2] }
-      let(:solution) {{ first_row: [2, 1], second_row: [1, 2] }}
-
-      it 'solves it' do
-        expect(Skyscraper.solve(top: top_clues)).to eq solution
-      end
+      it { is_expected.to eq({ first_row: [2, 1], second_row: [1, 2] }) }
     end
 
     context 'with bottom clue of 1, 2' do
       let(:bottom_clues) { [1, 2] }
-      let(:solution) {{ first_row: [1, 2], second_row: [2, 1] }}
-
-      it 'solves it' do
-        expect(Skyscraper.solve(bottom: bottom_clues)).to eq solution
-      end
+      it { is_expected.to eq({ first_row: [1, 2], second_row: [2, 1] }) }
     end
 
     context 'with bottom clue of 2, 1' do
       let(:bottom_clues) { [2, 1] }
-      let(:solution) {{ first_row: [2, 1], second_row: [1, 2] }}
-
-      it 'solves it' do
-        expect(Skyscraper.solve(bottom: bottom_clues)).to eq solution
-      end
+      it { is_expected.to eq({ first_row: [2, 1], second_row: [1, 2] }) }
     end
 
     context 'with left clue of 1, 2' do
       let(:left_clues) { [1, 2] }
-      let(:solution) {{ first_row: [2, 1], second_row: [1, 2] }}
-
-      it 'solves it' do
-        expect(Skyscraper.solve(left: left_clues)).to eq solution
-      end
+      it { is_expected.to eq({ first_row: [2, 1], second_row: [1, 2] }) }
     end
 
     context 'with left clue of 2, 1' do
       let(:left_clues) { [2, 1] }
-      let(:solution) {{ first_row: [1, 2], second_row: [2, 1] }}
-
-      it 'solves it' do
-        expect(Skyscraper.solve(left: left_clues)).to eq solution
-      end
+      it { is_expected.to eq({ first_row: [1, 2], second_row: [2, 1] }) }
     end
 
     context 'with right clue of 1, 2' do
       let(:right_clues) { [1, 2] }
-      let(:solution) {{ first_row: [1, 2], second_row: [2, 1] }}
-
-      it 'solves it' do
-        expect(Skyscraper.solve(right: right_clues)).to eq solution
-      end
+      it { is_expected.to eq({ first_row: [1, 2], second_row: [2, 1] }) }
     end
 
     context 'with right clue of 2, 1' do
       let(:right_clues) { [2, 1] }
-      let(:solution) {{ first_row: [2, 1], second_row: [1, 2] }}
-
-      it 'solves it' do
-        expect(Skyscraper.solve(right: right_clues)).to eq solution
-      end
+      it { is_expected.to eq({ first_row: [2, 1], second_row: [1, 2] }) }
     end
 
     context 'with top clue of 1, nil' do
       let(:top_clues) { [1, nil] }
-      let(:solution) {{ first_row: [2, 1], second_row: [1, 2] }}
-
-      it 'solves it' do
-        expect(Skyscraper.solve(top: top_clues)).to eq solution
-      end
+      it { is_expected.to eq({ first_row: [2, 1], second_row: [1, 2] }) }
     end
 
     context 'with top clue of nil, 1' do
       let(:top_clues) { [nil, 1] }
-      let(:solution) {{ first_row: [1, 2], second_row: [2, 1] }}
-
-      it 'solves it' do
-        expect(Skyscraper.solve(top: top_clues)).to eq solution
-      end
+      it { is_expected.to eq({ first_row: [1, 2], second_row: [2, 1] }) }
     end
 
     context 'with top clue of 2, nil' do
       let(:top_clues) { [2, nil] }
-      let(:solution) {{ first_row: [1, 2], second_row: [2, 1] }}
+      it { is_expected.to eq({ first_row: [1, 2], second_row: [2, 1] }) }
+    end
 
-      it 'solves it' do
-        expect(Skyscraper.solve(top: top_clues)).to eq solution
-      end
+    context 'with bottom clue of 1, nil' do
+      let(:bottom_clues) { [1, nil] }
+      it { is_expected.to eq({ first_row: [1, 2], second_row: [2, 1] }) }
+    end
+
+    context 'with left clue of nil, 1' do
+      let(:left_clues) { [nil, 1] }
+      it { is_expected.to eq({ first_row: [1, 2], second_row: [2, 1] }) }
+    end
+
+    context 'with right clue of 1, nil' do
+      let(:right_clues) { [1, nil] }
+      it { is_expected.to eq({ first_row: [1, 2], second_row: [2, 1] }) }
     end
   end
 end
