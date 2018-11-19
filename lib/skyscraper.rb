@@ -9,7 +9,7 @@ class Skyscraper
   end
 
   def solve
-    if top.length == 3
+    if left.length == 3
       solve_three_grid
     else
       solve_two_grid
@@ -28,13 +28,24 @@ class Skyscraper
   end
 
   def solve_three_grid
-    if top[1] == 1
-      { first_row: [1, 3, 2], second_row: [2, 1, 3], third_row: [3, 2, 1]}
+    if left[0] == 3
+      if left[2] == 2 || left[1] == 1
+        { first_row: [1, 2, 3], second_row: [3, 1, 2], third_row: [2, 3, 1]}
+      else
+        { first_row: [1, 2, 3], second_row: [2, 3, 1], third_row: [3, 1, 2]}
+      end
     else
-      { first_row: [1, 2, 3], second_row: [2, 3, 1], third_row: [3, 1, 2]}
+      if left[0] == 1
+        { first_row: [3, 1, 2], second_row: [1, 2, 3], third_row: [2, 3, 1]}
+      else
+        { first_row: [2, 3, 1], second_row: [1, 2, 3], third_row: [3, 1, 2]}
+      end
     end
   end
 end
+
+{ first_row: [1, 3, 2], second_row: [2, 1, 3], third_row: [3, 2, 1]}
+{ first_row: [3, 2, 1], second_row: [1, 3, 2], third_row: [2, 1, 3]}
 
 # class TwoByTwoGrid
 #   attr_reader :first_row

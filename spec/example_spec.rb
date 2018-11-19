@@ -37,14 +37,40 @@ describe 'skyscrapers' do
   end
 
   context "a 3x3 grid" do
-    context "with a top clue of 3, 1, nil" do
-      let(:top_clues) { [3, 1, nil] }
-      it { is_expected.to eq({ first_row: [1, 3, 2], second_row: [2, 1, 3], third_row: [3, 2, 1]}) }
+    context "with a left clue of 3, 1, nil" do
+      let(:left_clues) { [3, 1, nil] }
+      it { is_expected.to eq({
+        first_row: [1, 2, 3],
+        second_row: [3, 1, 2],
+        third_row: [2, 3, 1]
+      })}
     end
 
-    context "with a top clue of 3, 2, nil" do
-      let(:top_clues) { [3, 2, nil] }
-      it { is_expected.to eq({ first_row: [1, 2, 3], second_row: [2, 3, 1], third_row: [3, 1, 2]}) }
+    context "with a left clue of 3, 2, nil" do
+      let(:left_clues) { [3, 2, nil] }
+      it { is_expected.to eq({
+        first_row: [1, 2, 3],
+        second_row: [2, 3, 1],
+        third_row: [3, 1, 2]
+      })}
+    end
+
+    context "with a left clue of nil, 3, 1" do
+      let(:left_clues) { [nil, 3, 1] }
+      it { is_expected.to eq({
+        first_row: [2, 3, 1],
+        second_row: [1, 2, 3],
+        third_row: [3, 1, 2]
+      })}
+    end
+
+    context "with a left clue of nil, 3, 1" do
+      let(:left_clues) { [1, 3, nil] }
+      it { is_expected.to eq({
+        first_row: [3, 1, 2],
+        second_row: [1, 2, 3],
+        third_row: [2, 3, 1]
+      })}
     end
   end
 
