@@ -32,16 +32,17 @@ describe 'skyscrapers' do
     args[:left] = left_clues if defined?(left_clues)
     args[:right] = right_clues if defined?(right_clues)
 
-    Skyscraper.solve(args)
+    solver = Skyscraper.new(args)
+    solver.solve
   end
 
   context "a 3x3 grid" do
-    context "with a top clue of 3,1,nil" do
+    context "with a top clue of 3, 1, nil" do
       let(:top_clues) { [3, 1, nil] }
       it { is_expected.to eq({ first_row: [1, 3, 2], second_row: [2, 1, 3], third_row: [3, 2, 1]}) }
     end
 
-    context "with a top clue of 3,1,nil" do
+    context "with a top clue of 3, 2, nil" do
       let(:top_clues) { [3, 2, nil] }
       it { is_expected.to eq({ first_row: [1, 2, 3], second_row: [2, 3, 1], third_row: [3, 1, 2]}) }
     end
