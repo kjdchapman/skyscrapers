@@ -1,3 +1,20 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ @95-Samb Sign out
+0
+0 0 kjdchapman/skyscrapers
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
+skyscrapers/spec/example_spec.rb
+33084d9  7 days ago
+@kjdchapman kjdchapman Switch to left clues instead
+     
+149 lines (121 sloc)  4.06 KB
 # In a grid of 4 by 4 squares you want to place a skyscraper
 # in each square with only some clues:
 
@@ -32,18 +49,45 @@ describe 'skyscrapers' do
     args[:left] = left_clues if defined?(left_clues)
     args[:right] = right_clues if defined?(right_clues)
 
-    Skyscraper.solve(args)
+    solver = Skyscraper.new(args)
+    solver.solve
   end
 
   context "a 3x3 grid" do
-    context "with a top clue of 3,1,nil" do
-      let(:top_clues) { [3, 1, nil] }
-      it { is_expected.to eq({ first_row: [1, 3, 2], second_row: [2, 1, 3], third_row: [3, 2, 1]}) }
+    context "with a left clue of 3, 1, nil" do
+      let(:left_clues) { [3, 1, nil] }
+      it { is_expected.to eq({
+        first_row: [1, 2, 3],
+        second_row: [3, 1, 2],
+        third_row: [2, 3, 1]
+      })}
     end
 
-    context "with a top clue of 3,1,nil" do
-      let(:top_clues) { [3, 2, nil] }
-      it { is_expected.to eq({ first_row: [1, 2, 3], second_row: [2, 3, 1], third_row: [3, 1, 2]}) }
+    context "with a left clue of 3, 2, nil" do
+      let(:left_clues) { [3, 2, nil] }
+      it { is_expected.to eq({
+        first_row: [1, 2, 3],
+        second_row: [2, 3, 1],
+        third_row: [3, 1, 2]
+      })}
+    end
+
+    context "with a left clue of nil, 3, 1" do
+      let(:left_clues) { [nil, 3, 1] }
+      it { is_expected.to eq({
+        first_row: [2, 3, 1],
+        second_row: [1, 2, 3],
+        third_row: [3, 1, 2]
+      })}
+    end
+
+    context "with a left clue of nil, 3, 1" do
+      let(:left_clues) { [1, 3, nil] }
+      it { is_expected.to eq({
+        first_row: [3, 1, 2],
+        second_row: [1, 2, 3],
+        third_row: [2, 3, 1]
+      })}
     end
   end
 
@@ -119,3 +163,16 @@ describe 'skyscrapers' do
     end
   end
 end
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Press h to open a hovercard with more details.
