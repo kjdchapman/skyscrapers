@@ -28,36 +28,27 @@ class Skyscraper
   end
 
   def solve_three_grid
-    if left[0] == 3
-      if left[2] == 2 || left[1] == 1
-        { first_row: [1, 2, 3], second_row: [3, 1, 2], third_row: [2, 3, 1]}
-      else
-        { first_row: [1, 2, 3], second_row: [2, 3, 1], third_row: [3, 1, 2]}
-      end
+    top_left_clue = left[0]
+    middle_left_clue = left[1]
+    bottom_left_clue = left[2]
+
+    if top_left_clue == 1 && bottom_left_clue == 3
+      { first_row: [3, 1, 2], second_row: [2, 3, 1], third_row: [1, 2, 3]}
+
+    elsif (top_left_clue == 1 && bottom_left_clue != 3) #|| bottom_left_clue == 2
+      { first_row: [3, 1, 2], second_row: [1, 2, 3], third_row: [2, 3, 1]}
+
+    elsif top_left_clue == 3 && bottom_left_clue == 2 || middle_left_clue == 1
+      { first_row: [1, 2, 3], second_row: [3, 1, 2], third_row: [2, 3, 1]}
+
+    elsif top_left_clue == 3 && middle_left_clue != 1
+      { first_row: [1, 2, 3], second_row: [2, 3, 1], third_row: [3, 1, 2]}
+    elsif top_left_clue == 2 && bottom_left_clue == 3
+    	{ first_row: [2, 3, 1], second_row: [3, 1, 2], third_row: [1, 2, 3]}
+
     else
-      if left[0] == 1
-        { first_row: [3, 1, 2], second_row: [1, 2, 3], third_row: [2, 3, 1]}
-      else
-        { first_row: [2, 3, 1], second_row: [1, 2, 3], third_row: [3, 1, 2]}
-      end
+      { first_row: [2, 3, 1], second_row: [1, 2, 3], third_row: [3, 1, 2]}
     end
   end
 end
 
-{ first_row: [1, 3, 2], second_row: [2, 1, 3], third_row: [3, 2, 1]}
-{ first_row: [3, 2, 1], second_row: [1, 3, 2], third_row: [2, 1, 3]}
-
-# class TwoByTwoGrid
-#   attr_reader :first_row
-#   attr_reader :second_row
-
-#   def initialize(first_row:, second_row:)
-#     @first_row = first_row
-#     @second_row = second_row
-#   end
-
-#   def picture
-#     "|#{first_row[0]}|#{first_row[1]}|" + "\n" \
-#     "|#{second_row[0]}|#{second_row[1]}|"
-#   end
-# end
